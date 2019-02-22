@@ -7,6 +7,7 @@ package br.com.scargames.domain;
 
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import static javax.swing.text.StyleConstants.Size;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,6 +37,16 @@ public class Bandeira implements Serializable{//só para dizer que obj podem ser
     @Size(min=1,max=45)
     private String descricao;
     
+    @OneToMany(mappedBy="id")
+    private List<Cartao> cartoes;
+
+    public List<Cartao> getCartoes() {
+        return cartoes;
+    }
+
+    public void setCartoes(List<Cartao> cartoes) {
+        this.cartoes = cartoes;
+    }
    
     public Bandeira(){
     }
