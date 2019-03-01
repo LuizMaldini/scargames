@@ -48,15 +48,22 @@ public class Cartao implements Serializable{
     @JoinColumn(name="bandeira_cartao_id", referencedColumnName="id")
     @ManyToOne(optional=false)
     private Bandeira bandeira;
-
+    
+    
+    @JoinColumn(name="usuario_cartao_id",referencedColumnName="id")
+    @ManyToOne(optional=false)
+    private Usuario usuario;
+    
+    
     public Cartao() {
     }
 
-    public Cartao(Integer id, String numero, LocalDate vencimento, Bandeira bandeira) {
+    public Cartao(Integer id, String numero, LocalDate vencimento, Bandeira bandeira,Usuario usuario) {
         this.id = id;
         this.numero = numero;
         this.vencimento = vencimento;
        this.bandeira = bandeira;
+       this.usuario = usuario;
 }
     @Override
     public int hashCode() {
@@ -113,6 +120,14 @@ public class Cartao implements Serializable{
 
     public void setVencimento(LocalDate vencimento) {
         this.vencimento = vencimento;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
     

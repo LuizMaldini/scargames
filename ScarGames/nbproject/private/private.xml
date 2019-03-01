@@ -4,12 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/src/java/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/src/java/br/com/scargames/domain/Endereco.java</file>
+            <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/src/java/br/com/scargames/domain/Jogo.java</file>
             <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/src/java/br/com/scargames/domain/Produtora.java</file>
+            <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/src/java/br/com/scargames/domain/Cidade.java</file>
             <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/web/index.xhtml</file>
             <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/src/java/br/com/scargames/domain/Cartao.java</file>
             <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/src/java/br/com/scargames/domain/Bandeira.java</file>
             <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/src/java/br/com/scargames/domain/Genero.java</file>
             <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/web/welcomePrimefaces.xhtml</file>
+            <file>file:/C:/Users/aluno1/Documents/NetBeansProjects/ScarGames/ScarGames/src/java/br/com/scargames/domain/Usuario.java</file>
         </group>
     </open-files>
 </project-private>

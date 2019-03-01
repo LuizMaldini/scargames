@@ -19,6 +19,7 @@ import java.util.Objects;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 /**
  *
  * @author aluno1
@@ -62,6 +63,11 @@ private Genero genero;
 @JoinColumn(name="produtora_jogo_id",referencedColumnName="id")
 @ManyToOne(optional=false)
 private Produtora produtora;
+
+
+@OneToOne(mappedBy="id")
+private Biblioteca biblioteca;
+
 
     public Jogo() {
     }
@@ -164,6 +170,14 @@ private Produtora produtora;
             return false;
         }
         return true;
+    }
+
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
+    }
+
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
     }
 
 
