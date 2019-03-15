@@ -66,7 +66,7 @@ public class Usuario  implements Serializable{
     private String email;
     @NotNull
     @Column(name="senha")
-    @Size(min=6,max=20)
+    @Size(min=6,max=100)
     //expressao temporal para senha com caractecere
     private String senha;
     
