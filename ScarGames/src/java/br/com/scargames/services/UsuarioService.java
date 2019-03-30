@@ -1,13 +1,17 @@
-package br.com.scargames.service;
+package br.com.scargames.services;
 
 import br.com.scargames.dao.UsuarioDao;
 import br.com.scargames.domain.Usuario;
 import br.com.scargames.util.HashMaker;
 import java.util.List;
 
-public class UsuarioService {//ONDE É CRIADO AS REGRAS DE NEGÓCIO
+public class UsuarioService {
+     public void inicializarHobernate(){
+        usuarioDao.inicializarHobernate();
+        
+    }
     
-    private final UsuarioDao usuarioDao = new UsuarioDao();//OBJ CRIADO
+    private final UsuarioDao usuarioDao = new UsuarioDao();
     
     public List<Usuario> listar(){
         return usuarioDao.listar();
@@ -17,13 +21,12 @@ public class UsuarioService {//ONDE É CRIADO AS REGRAS DE NEGÓCIO
         return usuarioDao.consultar(id);
     }
     
-    public Boolean inserir(Usuario usuario){///ALTERA A SENHA PARA A SENHA CRIPTOGRAFADA, no alterar não se pode fazer isso, caso contrario alterara a senha
+    public Boolean inserir(Usuario usuario){
         usuario.setSenha(HashMaker.stringHexa(HashMaker.gerarHash(usuario.getSenha())));
         return usuarioDao.inserir(usuario);
     }
     
     public Boolean alterar(Usuario usuario){
-       // usuario.setSenha(HashMaker.stringHexa(HashMaker.gerarHash(usuario.getSenha())));
         return usuarioDao.alterar(usuario);
     }
     
@@ -31,7 +34,7 @@ public class UsuarioService {//ONDE É CRIADO AS REGRAS DE NEGÓCIO
         return usuarioDao.excluir(usuario);
     }
     
-    public Boolean autenticar(Usuario usuario){//é regra de négocio por isso fica no service
+    public Boolean autenticar(Usuario usuario){
         Usuario usuarioBanco = usuarioDao.consultarPorEmail(usuario.getEmail());
         if (usuarioBanco == null){
             return false;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.scargames.domain;
 
 import java.io.Serializable;
@@ -12,15 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-/**
- *
- * @author aluno1
- */
 
 @Entity
 @Table(name="genero")
@@ -30,13 +21,37 @@ public class Genero implements Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
-    @NotNull//garante que a info vai ser preenchida
+    @NotNull
     @Column(name="descricao")
     @Size(min=1,max=45)
     private String descricao;
     
     @OneToMany(mappedBy="id")
     private List<Jogo> jogos;
+
+    public Genero() {
+    }
+
+    public Genero(Integer id, String descricao) {
+        this.id = id;
+        this.descricao = descricao;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
     public List<Jogo> getJogos() {
         return jogos;
@@ -45,20 +60,11 @@ public class Genero implements Serializable{
     public void setJogos(List<Jogo> jogos) {
         this.jogos = jogos;
     }
-    
-    public Genero (){
-        
-    }
-
-    public Genero(Integer id, String descricao) {
-        this.id = id;
-        this.descricao = descricao;
-    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -79,21 +85,4 @@ public class Genero implements Serializable{
         }
         return true;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-    
 }

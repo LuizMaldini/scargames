@@ -2,7 +2,7 @@ package br.com.scargames.util;
 
 import java.security.MessageDigest;
 
-public class HashMaker {//duas classes para embaralhar a senha, implementa algortimo MD5
+public class HashMaker {
     public static String stringHexa(byte bytes[])
     {
         StringBuilder s = new StringBuilder();

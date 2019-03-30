@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.scargames.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -14,60 +10,54 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import org.hibernate.validator.constraints.Email;
-
-/**
- *
- * @author aluno1
- */
 
 @Entity
 @Table(name="usuario")
-public class Usuario  implements Serializable{
+public class Usuario implements Serializable{
     
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)   
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
+    
     @NotNull
     @Column(name="nome")
     @Size(min=1,max=100)
     private String nome;
+    
     @NotNull
     @Column(name="cpf")
-    @Size(min=1,max=11)
-    
+    @Size(min=11,max=11)
     private String cpf;
+    
     @NotNull
     @Column(name="dataNascimento")
-    @Temporal(TemporalType.DATE)
-    private LocalDate dataNascimento;
+    private Date dataNascimento;
+    
     @NotNull
     @Column(name="sexo")
     @Size(min=1,max=1)
     private String sexo;
+    
     @NotNull
     @Column(name="telefone")
     @Size(min=1,max=45)
     private String telefone;
+    
     @NotNull
-    @Column(name="email", unique=true)//unique nao deixa dois email iguais
-    @Size(min=1,max=50) 
-    @Email //valida se é email
+    @Column(name="email",unique=true)
+    @Size(min=1,max=50)
+    @Email
     private String email;
+    
     @NotNull
     @Column(name="senha")
     @Size(min=6,max=100)
-    //expressao temporal para senha com caractecere
     private String senha;
     
     @OneToMany(mappedBy="id")
@@ -76,14 +66,18 @@ public class Usuario  implements Serializable{
     @OneToMany(mappedBy="id")
     private List<Cartao> cartoes;
     
-    @OneToOne(mappedBy="id")
+    @OneToOne(mappedBy="usuario")
     private Biblioteca biblioteca;
-    
     
     public Usuario() {
     }
+    
+    public Usuario(String email, String senha){
+        this.email = email;
+        this.senha = senha;
+    }
 
-    public Usuario(Integer id, String nome, String cpf, LocalDate dataNascimento, String sexo, String telefone, String email, String senha) {
+    public Usuario(Integer id, String nome, String cpf, Date dataNascimento, String sexo, String telefone, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -118,11 +112,11 @@ public class Usuario  implements Serializable{
         this.cpf = cpf;
     }
 
-    public LocalDate getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -158,10 +152,34 @@ public class Usuario  implements Serializable{
         this.senha = senha;
     }
 
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+
+    public List<Cartao> getCartoes() {
+        return cartoes;
+    }
+
+    public void setCartoes(List<Cartao> cartoes) {
+        this.cartoes = cartoes;
+    }
+
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
+    }
+
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -182,18 +200,4 @@ public class Usuario  implements Serializable{
         }
         return true;
     }
-
-    public Biblioteca getBiblioteca() {
-        return biblioteca;
-    }
-
-    public void setBiblioteca(Biblioteca biblioteca) {
-        this.biblioteca = biblioteca;
-    }
-       
-       
-    
-    
-    
-    
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.scargames.domain;
 
 import java.io.Serializable;
@@ -18,24 +13,45 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author aluno1
- */
 @Entity
-@Table(name="produtora")
+@Table(name="produtora")    
 public class Produtora implements Serializable{
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
-    @NotNull//garante que a info vai ser preenchida
+    @NotNull
     @Column(name="nome")
     @Size(min=1,max=100)
     private String nome;
-
+    
     @OneToMany(mappedBy="id")
     private List<Jogo> jogos;
+
+    public Produtora() {
+    }
+
+    public Produtora(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public List<Jogo> getJogos() {
         return jogos;
@@ -44,19 +60,11 @@ public class Produtora implements Serializable{
     public void setJogos(List<Jogo> jogos) {
         this.jogos = jogos;
     }
-    
-    public Produtora(Integer id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-
-    public Produtora() {
-    }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -77,24 +85,4 @@ public class Produtora implements Serializable{
         }
         return true;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    
-    
-    
-    
 }

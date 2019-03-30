@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.scargames.domain;
 
 import java.io.Serializable;
@@ -12,62 +7,54 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-/**
- *
- * @author aluno1
- */
+
 @Entity
 @Table(name="jogo")
-public class Jogo implements Serializable{
+public class Jogo implements Serializable {
     
-@Id
-@GeneratedValue(strategy=GenerationType.IDENTITY)   
-private Integer id;
-
-@NotNull
-@Column(name="titulo")
-@Size(min=1,max=100)
-private String titulo;
-
-@NotNull
-@Column(name="classificacao")
-@Size(min=1,max=10)
-private Integer classificacao;
-
-@NotNull
-@Column(name="sinopse")
-@Size(min=1,max=1000)
-private String sinopse;
-
-@NotNull
-@Column(name="requisistos")
-@Size(min=1,max=200)
-private String requisitos;
-
-@NotNull
-@Column(name="nota")
-private Double nota;
-
-@JoinColumn(name="genero_jogo_id",referencedColumnName="id")
-@ManyToOne(optional=false)//qdo é obrigatorio
-private Genero genero;
-
-@JoinColumn(name="produtora_jogo_id",referencedColumnName="id")
-@ManyToOne(optional=false)
-private Produtora produtora;
-
-
-@OneToOne(mappedBy="id")
-private Biblioteca biblioteca;
-
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+    
+    @NotNull
+    @Column(name="titulo")
+    @Size(min=1,max=100)
+    private String titulo;
+    
+    @NotNull
+    @Column(name="classificacao")
+    private Integer classificacao;
+    
+    @NotNull
+    @Column(name="sinopse")
+    @Size(min=1,max=1000)
+    private String sinopse;
+    
+    @NotNull
+    @Column(name="requisitos")
+    @Size(min=1,max=200)
+    private String requisitos;
+    
+    @NotNull
+    @Column(name="nota")
+    private Double nota;
+    
+    @JoinColumn(name="genero",referencedColumnName="id")
+    @ManyToOne(optional=false)
+    private Genero genero;
+    
+    @JoinColumn(name="produtora",referencedColumnName="id")
+    @ManyToOne(optional=false)
+    private Produtora produtora;
+    
+    @OneToOne(mappedBy="jogo")
+    private Biblioteca biblioteca;
 
     public Jogo() {
     }
@@ -147,10 +134,18 @@ private Biblioteca biblioteca;
         this.produtora = produtora;
     }
 
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
+    }
+
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -171,16 +166,4 @@ private Biblioteca biblioteca;
         }
         return true;
     }
-
-    public Biblioteca getBiblioteca() {
-        return biblioteca;
-    }
-
-    public void setBiblioteca(Biblioteca biblioteca) {
-        this.biblioteca = biblioteca;
-    }
-
-
-    
-    
 }

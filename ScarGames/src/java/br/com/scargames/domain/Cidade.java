@@ -1,11 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
 package br.com.scargames.domain;
 
 import java.io.Serializable;
@@ -21,10 +13,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author aluno1
- */
 @Entity
 @Table(name="cidade")
 public class Cidade implements Serializable{
@@ -42,10 +30,10 @@ public class Cidade implements Serializable{
     @Column(name="estado")
     @Size(min=2,max=2)
     private String estado;
-
-    @OneToMany(mappedBy="id")
-    private List<Endereco>enderecos;
     
+    @OneToMany(mappedBy="id")
+    private List<Endereco> enderecos;
+
     public Cidade() {
     }
 
@@ -90,7 +78,7 @@ public class Cidade implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -111,8 +99,4 @@ public class Cidade implements Serializable{
         }
         return true;
     }
-    
-    
-    
-    
 }

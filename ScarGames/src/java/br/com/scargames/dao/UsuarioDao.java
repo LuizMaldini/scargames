@@ -5,7 +5,13 @@ import br.com.scargames.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 
-public class UsuarioDao {//ONDE TEM LIGAÇÃO COM BANCO
+public class UsuarioDao {
+    //void retorna nada
+    public void inicializarHobernate(){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.getTransaction().commit();
+    }
 
     public List<Usuario> listar(){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();

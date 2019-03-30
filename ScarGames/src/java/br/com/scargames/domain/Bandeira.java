@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.scargames.domain;
-
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,32 +7,51 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import static javax.swing.text.StyleConstants.Size;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-/**
- *
- * @author aluno1
- */
 
 @Entity
 @Table(name="bandeira")
-public class Bandeira implements Serializable{//só para dizer que obj podem ser transfomados em vetores de bytes
+public class Bandeira implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
-    @NotNull//garante que a info vai ser preenchida
+    @NotNull
     @Column(name="descricao")
     @Size(min=1,max=45)
     private String descricao;
     
     @OneToMany(mappedBy="id")
     private List<Cartao> cartoes;
+
+    public Bandeira() {
+    }
+
+    public Bandeira(Integer id, String descricao) {
+        this.id = id;
+        this.descricao = descricao;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
     public List<Cartao> getCartoes() {
         return cartoes;
@@ -47,19 +60,11 @@ public class Bandeira implements Serializable{//só para dizer que obj podem ser
     public void setCartoes(List<Cartao> cartoes) {
         this.cartoes = cartoes;
     }
-   
-    public Bandeira(){
-    }
-
-    public Bandeira(Integer id, String descricao) {
-        this.id = id;
-        this.descricao = descricao;
-    }
-
+    
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -80,21 +85,7 @@ public class Bandeira implements Serializable{//só para dizer que obj podem ser
         }
         return true;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+    
+    
     
 }

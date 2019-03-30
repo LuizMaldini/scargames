@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.scargames.domain;
 
 import java.io.Serializable;
@@ -12,22 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-/**
- *
- * @author aluno1
- */
 @Entity
 @Table(name="endereco")
 public class Endereco implements Serializable{
-  
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -42,8 +30,7 @@ public class Endereco implements Serializable{
     @Column(name="numero")
     @Size(min=1,max=20)
     private String numero;
-    
-    @NotNull
+
     @Column(name="complemento")
     @Size(min=1,max=30)
     private String complemento;
@@ -58,39 +45,26 @@ public class Endereco implements Serializable{
     @Size(min=1,max=10)
     private String cep;
     
-    //private String usuario;
-    
-    @JoinColumn(name="cidade_endereco_id",referencedColumnName="id")
+    @JoinColumn(name="cidade",referencedColumnName="id")
     @ManyToOne(optional=false)
     private Cidade cidade;
-
     
-    @JoinColumn(name="usuario_endereco_id",referencedColumnName="id")
+    @JoinColumn(name="usuario",referencedColumnName="id")
     @ManyToOne(optional=false)
     private Usuario usuario;
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Endereco() {
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-    
-    
-    
-    public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,  Cidade cidade, Usuario usuario) {
+    public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Cidade cidade, Usuario usuario) {
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
         this.bairro = bairro;
         this.cep = cep;
-        this.usuario = usuario;
         this.cidade = cidade;
-    }
-
-    public Endereco() {
+        this.usuario = usuario;
     }
 
     public Integer getId() {
@@ -141,14 +115,6 @@ public class Endereco implements Serializable{
         this.cep = cep;
     }
 
-  /*  public String getUsuario() {
-        return usuario;
-    }*/
-
-  /*  public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }*/
-
     public Cidade getCidade() {
         return cidade;
     }
@@ -157,10 +123,18 @@ public class Endereco implements Serializable{
         this.cidade = cidade;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -181,6 +155,4 @@ public class Endereco implements Serializable{
         }
         return true;
     }
-    
-    
 }
