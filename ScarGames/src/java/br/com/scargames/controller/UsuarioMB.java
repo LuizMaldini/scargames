@@ -2,6 +2,7 @@ package br.com.scargames.controller;
 
 import br.com.scargames.domain.Usuario;
 import br.com.scargames.services.UsuarioService;
+import br.com.scargames.util.UtilMessages;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -17,17 +18,18 @@ public class UsuarioMB implements Serializable{
     public UsuarioMB() {
     }
     
-     public void inicializarHobernate(){
+    public void inicializarHibernate(){
         UsuarioService service = new UsuarioService();
         service.inicializarHobernate();
     }
-     
+    
     public String autenticar(){
         UsuarioService service = new UsuarioService();
         usuario = new Usuario(email, senha);
         if (service.autenticar(usuario)){
             return "/private/index.xhtml?faces-redirect=true";
         }else{
+            UtilMessages.messageError("Dados Inválidos");
             return null;
         }
     }
