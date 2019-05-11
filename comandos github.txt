@@ -1,0 +1,8 @@
+git status
+
+git add .
+
+git commit -m "inseridos"
+
+git push
+
